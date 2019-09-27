@@ -1,0 +1,21 @@
+<ion-content padding>
+  <div class="boxLogin">
+    <img src="assets/imgs/user.svg" width="150px" height="150px" />
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button id="btnLogin" ion-button block round (click)="fazerLogin()">
+        ENTRAR
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
