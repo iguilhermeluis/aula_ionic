@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="azul">
+    <ion-title>Cadastre-se</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- NÃO COPIE ISSO, ISSO FOI GERADO NO SITE: https://getwaves.io/ -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path
+      fill="#0072ff"
+      fill-opacity="1"
+      d="M0,96L60,85.3C120,75,240,53,360,42.7C480,32,600,32,720,74.7C840,117,960,203,1080,202.7C1200,203,1320,117,1380,74.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+    ></path>
+  </svg>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="nome" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data de nascimento</ion-label>
+      <ion-datetime
+        doneText="Ok"
+        cancelText="Cancelar"
+        min="1930"
+        displayFormat="DD/MM/YYYY"
+        [(ngModel)]="dtNascimento"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Cep</ion-label>
+      <ion-input type="text" (blur)="buscarCep()" [(ngModel)]="cep"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Rua</ion-label>
+      <ion-input type="text" [(ngModel)]="rua"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Bairro</ion-label>
+      <ion-input type="text" [(ngModel)]="bairro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Estado</ion-label>
+      <ion-input type="text" [(ngModel)]="estado"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button (click)="cadastrar()" id="btnLogin" ion-button block round>
+        CADASTRAR
+      </button>
+      <br />
+      <p (click)="jaPossuoConta()">Já tem uma conta? <b>Entrar</b></p>
+    </ion-item>
+  </ion-list>
+</ion-content>

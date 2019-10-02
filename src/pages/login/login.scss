@@ -1,0 +1,26 @@
+$bgCinza: linear-gradient(90deg, #232526 0%, #414345 100%);
+$bgLaranja: linear-gradient(62deg, #ffbf00 0%, #f7ce68 100%);
+$bgAzul: linear-gradient(70deg, #00c6ff 0%, #0072ff 100%);
+
+page-login {
+  ion-content {
+    background: $bgAzul;
+  }
+  .boxLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0; // margem cima e baixo de 3rem
+  }
+  ion-list {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    box-sizing: border-box; /* Faz que o padding funciona internamente*/
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+  button {
+    background: $bgLaranja;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  }
+}

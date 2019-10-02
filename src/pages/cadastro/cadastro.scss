@@ -1,0 +1,21 @@
+page-cadastro {
+  /* TIRANDO O SOMBREAMENTO DO HEADER ANDROID */
+  .header-md::after {
+    background-image: none !important;
+  }
+
+  /* TIRANDO O SOMBREAMENTO DO HEADER IPHONE */
+  .toolbar-background-ios {
+    border-width: 0 0 0 !important;
+  }
+
+  /*tirando a linha */
+  .list-ios > .item-block:first-child {
+    border-top: 0 !important;
+  }
+
+  /* DESABILITANDO A ROLAGEM (SCROLL) */
+  .scroll-content {
+    overflow-y: hidden !important;
+  }
+}
