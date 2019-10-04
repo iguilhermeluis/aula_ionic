@@ -1,18 +1,23 @@
 <ion-content padding>
   <div class="boxLogin">
-    <img src="assets/imgs/user.svg" width="150px" height="150px" />
+    <img src="{{ urlImage }}" width="150px" height="150px" />
+    <p *ngIf="isUsuarioValido">Bem vindo {{ nomeUsuario }}</p>
   </div>
 
   <ion-list>
     <ion-item>
-      <ion-label stacked>E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
+      <ion-label stacked>Usuário do Github</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="email"
+        (blur)="buscarUserGithub()"
+      ></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="isUsuarioValido">
       <ion-label stacked>Senha</ion-label>
       <ion-input type="password" [(ngModel)]="senha"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="isUsuarioValido">
       <button id="btnLogin" ion-button block round (click)="fazerLogin()">
         ENTRAR
       </button>

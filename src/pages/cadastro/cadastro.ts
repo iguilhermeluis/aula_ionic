@@ -37,7 +37,6 @@ export class CadastroPage {
       this.rua = data.logradouro
       this.estado = data.localidade
       this.cep = data.cep
-
       console.log(data)
     })
   }
