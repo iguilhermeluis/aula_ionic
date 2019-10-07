@@ -13,10 +13,21 @@ import { SplashScreen } from '@ionic-native/splash-screen'
 import { CadastroPage } from '../pages/cadastro/cadastro'
 import { UsuarioProvider } from '../providers/usuario/usuario'
 import { HttpClientModule } from '@angular/common/http'
+import { IonicStorageModule } from '@ionic/storage'
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx'
+import { CameraProvider } from '../providers/camera/camera';
 
 @NgModule({
   declarations: [MyApp, HomePage, ListPage, AnaPage, LoginPage, CadastroPage],
-  imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(MyApp)],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: '__dbsenac',
+      driverOrder: ['indexeddb', 'websql', 'sqlite'],
+    }),
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -31,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http'
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UsuarioProvider,
+    Camera,
+    CameraProvider,
   ],
 })
 export class AppModule {}

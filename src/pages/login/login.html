@@ -10,7 +10,7 @@
       <ion-input
         type="email"
         [(ngModel)]="email"
-        (blur)="buscarUserGithub()"
+        (ionBlur)="buscarUserGithub()"
       ></ion-input>
     </ion-item>
     <ion-item *ngIf="isUsuarioValido">
