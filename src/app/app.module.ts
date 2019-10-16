@@ -14,8 +14,12 @@ import { CadastroPage } from '../pages/cadastro/cadastro'
 import { UsuarioProvider } from '../providers/usuario/usuario'
 import { HttpClientModule } from '@angular/common/http'
 import { IonicStorageModule } from '@ionic/storage'
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx'
-import { CameraProvider } from '../providers/camera/camera';
+
+import { Camera } from '@ionic-native/camera'
+import { Geolocation } from '@ionic-native/geolocation'
+// import { BarcodeScanner } from '@ionic-native/barcode-scanner'
+import { Vibration } from '@ionic-native/vibration'
+import { Device } from '@ionic-native/device'
 
 @NgModule({
   declarations: [MyApp, HomePage, ListPage, AnaPage, LoginPage, CadastroPage],
@@ -43,7 +47,10 @@ import { CameraProvider } from '../providers/camera/camera';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UsuarioProvider,
     Camera,
-    CameraProvider,
+    Geolocation,
+    // BarcodeScanner,
+    Vibration,
+    Device,
   ],
 })
 export class AppModule {}
