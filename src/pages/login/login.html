@@ -6,19 +6,15 @@
 
   <ion-list>
     <ion-item>
-      <ion-label stacked>Usuário do Github</ion-label>
-      <ion-input
-        type="email"
-        [(ngModel)]="email"
-        (ionBlur)="buscarUserGithub()"
-      ></ion-input>
+      <ion-label stacked>E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item *ngIf="isUsuarioValido">
       <ion-label stacked>Senha</ion-label>
       <ion-input type="password" [(ngModel)]="senha"></ion-input>
     </ion-item>
     <ion-item *ngIf="isUsuarioValido">
-      <button id="btnLogin" ion-button block round (click)="fazerLogin()">
+      <button id="btnLogin" ion-button block round (click)="LoginComFirebase()">
         ENTRAR
       </button>
       <br />

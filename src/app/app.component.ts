@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core'
-import { Nav, Platform, Events } from 'ionic-angular'
+import { Nav, Platform, Events, ToastController } from 'ionic-angular'
 import { StatusBar } from '@ionic-native/status-bar'
 import { SplashScreen } from '@ionic-native/splash-screen'
 
@@ -13,6 +13,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera'
 // import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { Vibration } from '@ionic-native/vibration'
 import { Device } from '@ionic-native/device'
+import { AngularFireAuth } from 'angularfire2/auth'
 
 @Component({
   templateUrl: 'app.html',
@@ -36,6 +37,8 @@ export class MyApp {
     // private barcodeScanner: BarcodeScanner,
     private vibration: Vibration,
     private device: Device,
+    public firebaseauth: AngularFireAuth,
+    public toastCtrl: ToastController,
   ) {
     this.initializeApp()
 
@@ -73,6 +76,15 @@ export class MyApp {
   }
 
   sair() {
+    this.firebaseauth.auth
+      .signOut()
+      .then(() => {
+        this.exibirToast('Você saiu')
+      })
+      .catch((erro: any) => {
+        this.exibirToast(erro)
+      })
+
     this.nav.setRoot(LoginPage)
     this.storage.clear()
   }
@@ -130,5 +142,11 @@ export class MyApp {
     alert('Meu sistema é ' + this.device.platform)
     alert('O modelo do meu cel é ' + this.device.model)
     alert('O meu IMEI é ' + this.device.uuid)
+  }
+
+  private exibirToast(mensagem: string): void {
+    let toast = this.toastCtrl.create({ duration: 3000, position: 'botton' })
+    toast.setMessage(mensagem)
+    toast.present()
   }
 }

@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { LoginPage } from '../login/login'
 import { HomePage } from '../home/home'
 import { UsuarioProvider } from '../../providers/usuario/usuario'
+import { AngularFireAuth } from 'angularfire2/auth'
 
 @IonicPage()
 @Component({
@@ -11,8 +12,8 @@ import { UsuarioProvider } from '../../providers/usuario/usuario'
   templateUrl: 'cadastro.html',
 })
 export class CadastroPage {
-  email: String
-  senha: String
+  email: string
+  senha: string
   nome: String
   dtNascimento: Date
 
@@ -25,7 +26,19 @@ export class CadastroPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public usuarioProvider: UsuarioProvider,
+    public firebaseauth: AngularFireAuth,
   ) {}
+
+  cadastrar() {
+    this.firebaseauth.auth
+      .createUserWithEmailAndPassword(this.email, this.senha)
+      .then(() => {
+        this.navCtrl.setRoot(HomePage)
+      })
+      .catch((erro: any) => {
+        console.error(erro)
+      })
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroPage')
@@ -40,11 +53,6 @@ export class CadastroPage {
       console.log(data)
     })
   }
-
-  cadastrar() {
-    this.navCtrl.setRoot(HomePage)
-  }
-
   jaPossuoConta() {
     this.navCtrl.push(LoginPage)
   }

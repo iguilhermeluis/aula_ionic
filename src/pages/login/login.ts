@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 import { CadastroPage } from '../cadastro/cadastro'
 import { HomePage } from '../home/home'
 import { UsuarioProvider } from '../../providers/usuario/usuario'
-
 import { Storage } from '@ionic/storage'
 
 import {
@@ -11,7 +10,10 @@ import {
   NavParams,
   MenuController,
   Events,
+  ToastController,
 } from 'ionic-angular'
+
+import { AngularFireAuth } from 'angularfire2/auth'
 
 @IonicPage()
 @Component({
@@ -19,12 +21,13 @@ import {
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  email: String
-  senha: String
-  urlImage: String = 'assets/imgs/user.svg'
-  isUsuarioValido: boolean = false
-  nomeUsuario: String = ''
+  email: string
+  senha: string
+  urlImage: string = 'assets/imgs/user.svg'
+  isUsuarioValido: boolean = true
+  nomeUsuario: string = ''
   dados: any
+  user: any
 
   constructor(
     public navCtrl: NavController,
@@ -33,7 +36,14 @@ export class LoginPage {
     public storage: Storage,
     public menu: MenuController,
     public events: Events,
-  ) {}
+    public firebaseauth: AngularFireAuth,
+    public toastCtrl: ToastController,
+  ) {
+    firebaseauth.user.subscribe((data) => {
+      this.user = data
+      console.info(data)
+    })
+  }
 
   ionViewDidLoad() {
     console.log('O ionViewDidLoad é executado quando carregar')
@@ -101,4 +111,32 @@ export class LoginPage {
       elementoBotao.style.background = corAntiga
     }, 3000)
   }
+
+  LoginComFirebase() {
+    let elementoBotao = <HTMLElement>document.querySelector('#btnLogin')
+    elementoBotao.innerText = 'ENTRANDO...'
+    let corAntiga = elementoBotao.style.background
+    elementoBotao.style.background = '#7f8c8d'
+    this.firebaseauth.auth
+      .signInWithEmailAndPassword(this.email, this.senha)
+      .then(() => {
+        this.exibirToast('Logado com sucesso!')
+        this.navCtrl.setRoot(HomePage)
+      })
+      .catch((erro: any) => {
+        console.log(erro)
+        elementoBotao.innerText = 'ENTRAR'
+        elementoBotao.style.background = corAntiga
+        this.exibirToast('Usuário ou senha inválidos')
+      })
+  }
+  
+  exibirToast(mensagem: string) {
+    let toast = this.toastCtrl.create({
+      duration: 3000,
+      position: 'botton' })
+    toast.setMessage(mensagem)
+    toast.present()
+  }
+
 }

@@ -20,6 +20,16 @@ import { Geolocation } from '@ionic-native/geolocation'
 // import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { Vibration } from '@ionic-native/vibration'
 import { Device } from '@ionic-native/device'
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireAuthModule } from 'angularfire2/auth'
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyAei4rSeM-Nsb4dzDMEiTlT7r0V1UBaR20',
+  authDomain: 'senacionic.firebaseapp.com',
+  databaseURL: 'https://senacionic.firebaseio.com',
+  storageBucket: 'senacionic.appspot.com',
+  messagingSenderId: '277987106305',
+}
 
 @NgModule({
   declarations: [MyApp, HomePage, ListPage, AnaPage, LoginPage, CadastroPage],
@@ -31,6 +41,8 @@ import { Device } from '@ionic-native/device'
       name: '__dbsenac',
       driverOrder: ['indexeddb', 'websql', 'sqlite'],
     }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
