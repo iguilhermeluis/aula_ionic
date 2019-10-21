@@ -17,11 +17,13 @@ import { IonicStorageModule } from '@ionic/storage'
 
 import { Camera } from '@ionic-native/camera'
 import { Geolocation } from '@ionic-native/geolocation'
-// import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { Vibration } from '@ionic-native/vibration'
 import { Device } from '@ionic-native/device'
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireAuthModule } from 'angularfire2/auth'
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service'
+import { AdicionarEventosPage } from '../pages/adicionar-eventos/adicionar-eventos'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyAei4rSeM-Nsb4dzDMEiTlT7r0V1UBaR20',
@@ -32,7 +34,15 @@ export const firebaseConfig = {
 }
 
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, AnaPage, LoginPage, CadastroPage],
+  declarations: [
+    MyApp,
+    HomePage,
+    ListPage,
+    AnaPage,
+    LoginPage,
+    CadastroPage,
+    AdicionarEventosPage,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -43,6 +53,7 @@ export const firebaseConfig = {
     }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,6 +63,7 @@ export const firebaseConfig = {
     AnaPage,
     LoginPage,
     CadastroPage,
+    AdicionarEventosPage,
   ],
   providers: [
     StatusBar,
@@ -60,9 +72,9 @@ export const firebaseConfig = {
     UsuarioProvider,
     Camera,
     Geolocation,
-    // BarcodeScanner,
     Vibration,
     Device,
+    FirebaseServiceProvider,
   ],
 })
 export class AppModule {}

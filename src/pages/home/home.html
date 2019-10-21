@@ -20,6 +20,9 @@
     <div class="boxTitle" (click)="openeditprofile()">
       <p>TÍTULO</p>
     </div>
+    <button ion-item *ngFor="let e of eventos | async">
+      {{ e.nome }}
+    </button>
 
     <ion-card>
       <img

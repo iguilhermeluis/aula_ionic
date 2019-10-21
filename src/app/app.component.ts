@@ -14,6 +14,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera'
 import { Vibration } from '@ionic-native/vibration'
 import { Device } from '@ionic-native/device'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { AdicionarEventosPage } from '../pages/adicionar-eventos/adicionar-eventos'
 
 @Component({
   templateUrl: 'app.html',
@@ -21,7 +22,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 export class MyApp {
   @ViewChild(Nav) nav: Nav
 
-  rootPage: any = LoginPage
+  rootPage: any = HomePage
   pages: Array<{ title: string; component: any }>
   urlImage: String = 'assets/imgs/no_user.png'
   dadosUser: any
@@ -47,6 +48,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Login', component: LoginPage },
+      { title: 'Adicionar eventos', component: AdicionarEventosPage },
     ]
   }
 
